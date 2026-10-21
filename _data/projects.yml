@@ -1,9 +1,9 @@
 - slug: radio
   title: Radio
   category: Full-stack / Music recommendation
-  summary: A personal radio station for a local music library. It combines music recommendations, listening feedback, and spoken DJ announcements in a desktop application.
-  implementation: A FastAPI backend connects a React interface to audio playback. Vector search retrieves candidate songs, an LLM reranks them, and listening history informs future selections.
-  contribution: Built the backend and recommendation system and made the product and interface design decisions. Frontend implementation was AI-assisted.
+  summary: A local-first desktop radio app that builds personalized queues for a 3,000-track music library, with recommendation retrieval under 30 ms.
+  implementation: An Electron and React application connects to a FastAPI backend, with SQLite and ChromaDB supporting library data, listening history, and vector retrieval. An LLM and TTS DJ persona generate contextual spoken segments.
+  contribution: Designed the product and interface, and built the recommendation pipeline and backend. Frontend implementation was AI-assisted.
   status: Refining onboarding and first-time setup.
   stack: [Python, FastAPI, React, ChromaDB, Electron]
   repo_url: https://github.com/kyle2363/radio
