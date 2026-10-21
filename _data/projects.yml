@@ -1,0 +1,48 @@
+- slug: radio
+  title: Radio
+  category: Full-stack / Music recommendation
+  summary: A personal radio station for a local music library. It combines music recommendations, listening feedback, and spoken DJ announcements in a desktop application.
+  implementation: A FastAPI backend connects a React interface to audio playback. Vector search retrieves candidate songs, an LLM reranks them, and listening history informs future selections.
+  contribution: Built the backend and recommendation system and made the product and interface design decisions. Frontend implementation was AI-assisted.
+  status: Refining onboarding and first-time setup.
+  stack: [Python, FastAPI, React, ChromaDB, Electron]
+  repo_url: https://github.com/kyle2363/radio
+  demo_url: ""
+  image: ""
+  image_alt: ""
+  figure_label: System note / Recommendation pipeline
+  flow: [Listening history & preferences, Vector search for candidate songs, LLM reranking, Playback & listener feedback]
+  figure_note: Feedback feeds back into the next selection.
+  caption: "Radio / From a local library to a personalized queue."
+
+- slug: breakout
+  title: Breakout DQN
+  category: Machine learning / Reinforcement learning
+  summary: A Breakout-style game and a deep Q-learning agent that learns from pixels rather than a hand-written paddle controller.
+  implementation: A convolutional network estimates action values from stacked frames. Experience replay and a target network support the training loop, with checkpoints for watching the agent play.
+  contribution: Implemented the game environment, agent, and training pipeline in Python and PyTorch.
+  stack: [Python, PyTorch, NumPy, Pygame]
+  repo_url: ""
+  demo_url: ""
+  image: ""
+  image_alt: ""
+  figure_label: System note / Agent training loop
+  flow: [Stacked game frames, CNN estimates action values, Agent chooses a paddle action, Reward & transition stored in replay]
+  figure_note: Learn from sampled experience, then repeat.
+  caption: "Breakout / Connecting visual observations to actions."
+
+- slug: music-guess
+  title: Music Guess Game
+  category: Full-stack / Interactive application
+  summary: A guessing game built around a local music collection. Identify a song from short audio snippets, with longer clips available as the round progresses.
+  implementation: An Express API scans song metadata, handles rounds, and streams audio. A React frontend supports searching for guesses and revealing the answer.
+  contribution: Built the game interface and backend, including music-library scanning, search, and round handling.
+  stack: [JavaScript, React, Express, Vite]
+  repo_url: ""
+  demo_url: ""
+  image: ""
+  image_alt: ""
+  figure_label: System note / One round
+  flow: [Scan the local music library, Listen to a short snippet, Search & submit a guess, Reveal the song & score]
+  figure_note: A small application built around music discovery.
+  caption: "Music Guess Game / How quickly can you name that song?"

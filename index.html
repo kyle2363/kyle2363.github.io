@@ -1,259 +1,76 @@
 ---
 layout: default
-title: Home
-description: Kyle Huang — CS Student, Machine Learning Engineer, Python & Java Developer
+title: Kyle Huang — Software & Machine Learning
+description: Computer science student at Brown University, building software and exploring machine learning. Selected projects, experience, and contact.
 ---
 
-<!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
-<section id="home">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-badge fade-up">Open to Opportunities</div>
-      <h1 class="hero-title fade-up">
-        Hi, I'm <em>Kyle Huang</em>.<br/>ML Engineer &amp; Developer.
-      </h1>
-      <p class="hero-desc fade-up">
-        CS student passionate about machine learning, Python, and Java.
-        I build intelligent systems and clean software — from data pipelines to full-stack apps.
-      </p>
-      <div class="hero-actions fade-up">
-        <a href="#projects" class="btn-primary">View My Work →</a>
-        <a href="#contact"  class="btn-secondary">Get In Touch</a>
-      </div>
-    </div>
-
-    <div class="hero-card">
-      <div class="hero-card-avatar">KH</div>
-      <h4>Kyle Huang</h4>
-      <p>CS Student · ML Focus</p>
-      <div class="skill-pills">
-        <span class="pill">Python</span>
-        <span class="pill">Java</span>
-        <span class="pill">ML</span>
-        <span class="pill">PyTorch</span>
-        <span class="pill">Git</span>
-      </div>
-    </div>
+<section class="intro" id="home" aria-labelledby="intro-title">
+  <div class="intro-meta"><span>Computer science · Brown University</span><span>Providence, RI</span></div>
+  <p class="eyebrow">Kyle Huang / Selected work</p>
+  <h1 id="intro-title">Software, experiments,<br>and a little <em>curiosity.</em></h1>
+  <p class="intro-copy">I'm Kyle, a computer science student at Brown. I build applications and explore machine learning, from a radio that learns my taste to an agent learning to play Breakout.</p>
+  <div class="intro-bottom">
+    <p class="availability">Interested in software engineering &amp; ML internships</p>
+    <a class="text-link" href="#projects">Explore my projects <span aria-hidden="true">↓</span></a>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════ ABOUT ═══════════════════════════════════════ -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-visual reveal">
-        <div class="about-img-box">👨‍💻</div>
-        <div class="about-stat-card">
-          <div class="stat-num">10+</div>
-          <div class="stat-label">Projects built</div>
-        </div>
-      </div>
-      <div class="reveal">
-        <p class="section-label">About Me</p>
-        <h2 class="section-title">Building things that<br/>think &amp; scale.</h2>
-        <p style="color:var(--subtle); margin-bottom:1rem; font-size:1rem; line-height:1.7;">
-          I'm a Computer Science student with a deep focus on machine learning and software engineering.
-          My work sits at the intersection of clean code and intelligent systems — I care about writing
-          software that is both performant and elegant.
-        </p>
-        <p style="color:var(--subtle); margin-bottom:1rem; font-size:1rem; line-height:1.7;">
-          I primarily work in <strong>Python</strong> and <strong>Java</strong>, with hands-on experience
-          building ML models, training pipelines, and backend services. I'm always looking for
-          opportunities to learn, contribute, and collaborate on meaningful projects.
-        </p>
-        <p style="color:var(--subtle); font-size:1rem; line-height:1.7; margin-bottom:0;">
-          Outside of code I enjoy gaming, hiking, video editing and reading AI research papers
-          with a boba tea.
-        </p>
-        <div class="skill-grid">
-          <div class="skill-tag">Python</div>
-          <div class="skill-tag">Java</div>
-          <div class="skill-tag">PyTorch</div>
-          <div class="skill-tag">scikit-learn</div>
-          <div class="skill-tag">SQL</div>
-          <div class="skill-tag">Git / GitHub</div>
-          <div class="skill-tag">C</div>
-          <div class="skill-tag">NumPy</div>
-          <div class="skill-tag">Pandas</div>
-        </div>
+<section id="projects" aria-labelledby="projects-title">
+  <div class="section-heading"><p class="eyebrow">01 / Selected projects</p><h2 id="projects-title">A few things I've built.</h2><p>Personal projects, with a look at what's happening under the hood.</p></div>
+  {% for project in site.data.projects %}
+  <article class="project" aria-labelledby="project-{{ project.slug }}">
+    <div class="project-copy">
+      <p class="project-category">{{ project.category }}</p>
+      <h3 id="project-{{ project.slug }}">{{ project.title }}</h3>
+      <p class="project-summary">{{ project.summary }}</p>
+      <dl class="project-notes">
+        <div><dt>Under the hood</dt><dd>{{ project.implementation }}</dd></div>
+        <div><dt>My contribution</dt><dd>{{ project.contribution }}</dd></div>
+        {% if project.status %}<div><dt>Current work</dt><dd>{{ project.status }}</dd></div>{% endif %}
+      </dl>
+      <ul class="stack" aria-label="Technologies">{% for item in project.stack %}<li>{{ item }}</li>{% endfor %}</ul>
+      <div class="project-links">
+        {% if project.repo_url and project.repo_url != empty %}<a class="text-link" href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">View {{ project.title }} source <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>{% endif %}
+        {% if project.demo_url and project.demo_url != empty %}<a class="text-link" href="{{ project.demo_url }}" target="_blank" rel="noopener noreferrer">Try {{ project.title }} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>{% endif %}
       </div>
     </div>
+    <figure class="project-figure">
+      {% if project.image and project.image != empty %}
+      <img src="{{ project.image | relative_url }}" alt="{{ project.image_alt | escape }}" loading="lazy" width="960" height="640">
+      {% else %}
+      <div class="system-note" aria-label="{{ project.title }} system overview">
+        <p class="note-label">{{ project.figure_label }}</p>
+        <ol class="system-flow">{% for step in project.flow %}<li><span class="flow-index" aria-hidden="true">0{{ forloop.index }}</span><span>{{ step }}</span></li>{% endfor %}</ol>
+        <p class="note-footer">{{ project.figure_note }}</p>
+      </div>
+      {% endif %}
+      <figcaption>{{ project.caption }}</figcaption>
+    </figure>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="about-section" id="about" aria-labelledby="about-title">
+  <div class="section-heading"><p class="eyebrow">02 / A bit about me</p><h2 id="about-title">Learning by making.</h2></div>
+  <div class="about-grid">
+    <div class="about-copy">
+      <p>I'm studying computer science at Brown University, with an interest in both software engineering and machine learning. I like projects where I can work on the whole system: the model or backend, the interface, and the details that connect them.</p>
+      <p>My projects have taken me from reinforcement learning in PyTorch to building applications around my own music library. I primarily work in Python and Java, and use JavaScript and React for web projects.</p>
+      <p>Outside of programming, I enjoy hiking, gaming, and video editing in Premiere Pro. Usually with a boba tea nearby.</p>
+    </div>
+    <aside class="toolbox" aria-label="Tools I work with"><h3>Tools I work with</h3><dl><div><dt>Languages</dt><dd>Python, Java, JavaScript, SQL, C</dd></div><div><dt>ML &amp; data</dt><dd>PyTorch, scikit-learn, NumPy, Pandas</dd></div><div><dt>Applications</dt><dd>React, FastAPI, Express, Git</dd></div></dl></aside>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════ PROJECTS ═══════════════════════════════════════ -->
-<section id="projects">
-  <div class="container">
-    <p class="section-label reveal">Projects</p>
-    <h2 class="section-title reveal">Things I've built.</h2>
-    <p class="section-subtitle reveal">A selection of personal and academic projects spanning machine learning, data engineering, and software development.</p>
-
-    <div class="projects-grid">
-      <div class="project-card reveal">
-        <div class="project-thumb" style="background:linear-gradient(135deg,#dbeafe,#e0f2fe);">🤖</div>
-        <div class="project-body">
-          <div class="project-tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">ML</span></div>
-          <h3>Breakout AI: Q-Learning + CNN</h3>
-          <p>Developed an AI agent that combines Q-learning with a convolutional neural network to learn and play Breakout autonomously, achieving efficient paddle control and maximizing score through visual input processing.</p>
-          <div class="project-links">
-            <a href="https://github.com/{{ site.github_username }}" class="link-btn" target="_blank">↗ GitHub</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-thumb" style="background:linear-gradient(135deg,#dcfce7,#d1fae5);">📄</div>
-        <div class="project-body">
-          <div class="project-tags"><span class="tag">Java</span><span class="tag">Kotlin</span><span class="tag">Andorid</span></div>
-          <h3>Java OCR App with Jetpack Compose GUI</h3>
-          <p>Built a Java-based OCR application from scratch, leveraging Jetpack Compose for a modern, responsive GUI and implementing text recognition to extract and process text from images efficiently.</p>
-          <div class="project-links">
-            <a href="https://github.com/{{ site.github_username }}" class="link-btn" target="_blank">↗ GitHub</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-thumb" style="background:linear-gradient(135deg,#fef9c3,#fef3c7);">🗨️</div>
-        <div class="project-body">
-          <div class="project-tags"><span class="tag">Kotlin</span><span class="tag">Python</span></div>
-          <h3>Multimodal LLM Chat Interface</h3>
-          <p>Developed a chat interface for a large language model supporting text, audio, and image inputs, enabling seamless multimodal interactions and real-time response generation.</p>
-          <div class="project-links">
-            <a href="https://github.com/{{ site.github_username }}" class="link-btn" target="_blank">↗ GitHub</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-thumb" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);">🔍</div>
-        <div class="project-body">
-          <div class="project-tags"><span class="tag">code</span><span class="tag">data</span></div>
-          <h3>TBA</h3>
-          <p>TBD</p>
-          <div class="project-links">
-            <a href="https://github.com/{{ site.github_username }}" class="link-btn" target="_blank">↗ GitHub</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-thumb" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);">🌐</div>
-        <div class="project-body">
-          <div class="project-tags"><span class="tag">Jekyll</span><span class="tag">HTML/CSS</span></div>
-          <h3>Personal Portfolio Site</h3>
-          <p>This site! Built with Jekyll on GitHub Pages. Designed from scratch with a custom layout, responsive design, and clean navigation.</p>
-          <div class="project-links">
-            <a href="https://github.com/{{ site.github_username }}" class="link-btn" target="_blank">↗ GitHub</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-thumb" style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);">📡</div>
-        <div class="project-body">
-          <div class="project-tags"><span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">ML</span></div>
-          <h3>Neural Net from Scratch In progress</h3>
-          <p>Implemented a fully-connected neural network using only NumPy. Includes forward/back-propagation, mini-batch SGD, and dropout regularization.</p>
-          <div class="project-links">
-            <a href="https://github.com/{{ site.github_username }}" class="link-btn" target="_blank">↗ GitHub</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<section id="experience" aria-labelledby="experience-title">
+  <div class="section-heading"><p class="eyebrow">03 / Background</p><h2 id="experience-title">Where I've learned.</h2></div>
+  <div class="experience-entry"><p class="entry-date">2025 — 2029 <span>(expected)</span></p><div><h3>Computer Science</h3><p class="entry-org">Brown University</p><p>Undergraduate studies in computer science, with interests in software engineering and machine learning.</p></div></div>
+  <div class="experience-entry"><p class="entry-date">Jun — Aug 2025</p><div><h3>Lead Robotics Instructor</h3><p class="entry-org">Mystic Valley YMCA</p><p>Taught block-based and C programming in youth robotics classes. Mentored teams preparing for a national robotics competition and helped students troubleshoot their code and develop problem-solving skills.</p></div></div>
 </section>
 
-<!-- ═══════════════════════════════════════ EXPERIENCE ═══════════════════════════════════════ -->
-<section id="experience">
-  <div class="container">
-    <p class="section-label reveal">Experience</p>
-    <h2 class="section-title reveal">Where I've worked &amp; learned.</h2>
-    <p class="section-subtitle reveal">A timeline of roles, internships, and academic milestones.</p>
-
-    <div class="timeline">
-      <!-- To add new line just copy paste this -->
-      <div class="timeline-item reveal">
-        <div class="timeline-dot">🏫</div>
-        <div class="timeline-content">
-          <div class="timeline-header">
-            <div><h3>B.S. Computer Science</h3><div class="org">Brown University · Expected 2029</div></div>
-            <span class="timeline-date">2025 – Present</span>
-          </div>
-          <p>GPA 4.0 · Relevant coursework: Algorithms, Data Structures, Computer Systems, Software Engineering, Linear Algebra, Probability &amp; Statistics.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-dot">🖥️</div>
-        <div class="timeline-content">
-          <div class="timeline-header">
-            <div><h3>Lead Robotics Instructor</h3><div class="org">Mystic Valley YMCA</div></div>
-            <span class="timeline-date">Jun - Aug 2025</span>
-          </div>
-          <p>Led NASA- and MIT-affiliated robotics classes for youth, teaching block-based and C programming while mentoring teams in a national robotics competition. Designed STEM activities, guided troubleshooting, and fostered problem-solving and teamwork.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════ INTERESTS ═══════════════════════════════════════ -->
-<section id="interests">
-  <div class="container">
-    <p class="section-label reveal">Interests</p>
-    <h2 class="section-title reveal">Beyond the code.</h2>
-    <p class="section-subtitle reveal">Things I care about, explore, and dive deep in to.</p>
-
-    <div class="interests-grid">
-      <div class="interest-card reveal"><div class="interest-icon">🧠</div><h3>AI Research</h3><p>Following breakthroughs in large language models, reinforcement learning, and AI alignment.</p></div>
-      <div class="interest-card reveal"><div class="interest-icon">🎮</div><h3>Casual Gaming</h3><p>Player of  strategy and some FPS titles. Interested in the AI behind game bots.</p></div>
-      <div class="interest-card reveal"><div class="interest-icon">📚</div><h3>Technical Reading</h3><p>Reading ML papers and textbooks.</p></div>
-      <div class="interest-card reveal"><div class="interest-icon">🥾</div><h3>Hiking</h3><p>Spending time outdoors on trails, with a goal to complete a major long-distance route.</p></div>
-      <div class="interest-card reveal"><div class="interest-icon">🎬</div><h3>Video Editing</h3><p>using Premiere Pro to create cinamatic films that connect to ones heart.</p></div>
-      <div class="interest-card reveal"><div class="interest-icon">🛠️</div><h3>Open Source</h3><p>Learning from open-source ML tools and libraries on GitHub.</p></div>
-      <div class="interest-card reveal"><div class="interest-icon">🎵</div><h3>Music</h3><p>Listener and occasional AI assisted producer. Interested in ML applications to music generation.</p></div>
-      <div class="interest-card reveal"><div class="interest-icon">🌏</div><h3>Languages</h3><p>Native English speaker learning Mandarin. Fascinated by multilingual NLP research.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════ CONTACT ═══════════════════════════════════════ -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-grid">
-      <div>
-        <p class="section-label reveal">Contact</p>
-        <h2 class="section-title reveal">Let's work<br/>together.</h2>
-        <p class="section-subtitle reveal">Whether it's an internship, collaboration, or just a chat — I'd love to hear from you.</p>
-        <div class="reveal">
-          <h4 style="font-size:0.85rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1.5rem;">Find me on</h4>
-          <a href="https://github.com/{{ site.github_username }}" target="_blank" class="contact-link-row">
-            <div class="icon-circle">⚡</div> github.com/{{ site.github_username }}
-          </a>
-          <a href="mailto:{{ site.email }}" class="contact-link-row">
-            <div class="icon-circle">✉️</div> {{ site.email }}
-          </a>
-          <a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank" class="contact-link-row">
-            <div class="icon-circle">💼</div> linkedin.com/in/{{ site.linkedin_username }}
-          </a>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="contact-form">
-          <div class="form-row">
-            <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane" /></div>
-            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Doe" /></div>
-          </div>
-          <div class="form-group"><label>Email</label><input type="email" placeholder="jane@example.com" /></div>
-          <div class="form-group"><label>Subject</label><input type="text" placeholder="Internship Opportunity" /></div>
-          <div class="form-group">
-            <label>Message</label>
-            <textarea placeholder="Hi Kyle, I'd love to connect about…"></textarea>
-          </div>
-          <button class="btn-send">Send Message →</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<section class="contact-section" id="contact" aria-labelledby="contact-title">
+  <p class="eyebrow">04 / Get in touch</p><h2 id="contact-title">Have something in mind?</h2>
+  <p>I'm interested in software engineering and ML internships, and always happy to talk about a project.</p>
+  <a class="email-link" href="mailto:{{ site.email }}">{{ site.email }} <span aria-hidden="true">↗</span></a>
+  <div class="social-links"><a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a><a href="https://www.linkedin.com/in/{{ site.linkedin_username }}/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div>
 </section>

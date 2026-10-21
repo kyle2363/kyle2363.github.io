@@ -1,9 +1,9 @@
 title: Kyle Huang
 email: kyle_huang1@brown.edu
-description: CS Student · Machine Learning · Python · Java
+description: Computer science student at Brown University. Software engineering, machine learning, and selected projects.
 baseurl: ""
 url: "https://sae2363.github.io"
-github_username: sae2363
+github_username: kyle2363
 linkedin_username: kyle-huang-abc910
 
 # Build settings — no theme, fully custom
@@ -18,3 +18,6 @@ exclude:
   - Gemfile.lock
   - node_modules/
   - vendor/
+  - PORTFOLIO_TODO.md
+  - readme.md
+  - noteToSelf.txt
