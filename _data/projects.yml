@@ -63,4 +63,4 @@
   figure_label: ""
   flow: []
   figure_note: ""
-  caption: "Input and approximation / Target normalized MAE 0.10; measured error 0.0976."
+  caption: "Input and approximation / Target normalized MAE 0.04; measured error 0.0400."
