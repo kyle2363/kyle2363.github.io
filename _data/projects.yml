@@ -46,3 +46,21 @@
   flow: [Scan the local music library, Listen to a short snippet, Search & submit a guess, Reveal the song & score]
   figure_note: A small application built around music discovery.
   caption: "Music Guess Game / How quickly can you name that song?"
+
+- slug: image-approximation
+  title: Adaptive Image Approximation
+  category: Algorithms / Image processing
+  summary: An adaptive image approximation that replaces regions with average colors, refining the regions with the most error until a target mean absolute error is reached. It creates a visual approximation, not a smaller encoded file.
+  implementation: A priority queue selects high-error regions for recursive subdivision. NumPy calculates region colors and normalized mean absolute error; a Python CLI loads and saves images.
+  contribution: Implemented the approximation algorithm, command-line workflow, test suite, and benchmark for runtime and measured image error.
+  stack: [Python, NumPy, Pillow, unittest]
+  repo_url: https://github.com/kyle2363/image_compressor
+  demo_url: ""
+  image: /assets/images/image-approximation.webp
+  image_alt: Side-by-side sunset city image and its adaptive average-color approximation.
+  image_width: 1200
+  image_height: 760
+  figure_label: ""
+  flow: []
+  figure_note: ""
+  caption: "Input and approximation / Target normalized MAE 0.10; measured error 0.0976."
